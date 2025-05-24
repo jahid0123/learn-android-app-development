@@ -16,6 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.jmjbrothers.mysecondandroidapplication.R;
+import com.jmjbrothers.mysecondandroidapplication.model.Employee;
 import com.jmjbrothers.mysecondandroidapplication.service.ApiService;
 
 import java.util.Calendar;
@@ -61,7 +63,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8081/") // for emulator
+                .baseUrl("http://10.0.2.2:8080/") // for emulator
                 // .baseUrl("http://172.28.64.1:8081/") // Give you computers IP
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

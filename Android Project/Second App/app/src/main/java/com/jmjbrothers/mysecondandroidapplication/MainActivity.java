@@ -9,6 +9,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.jmjbrothers.mysecondandroidapplication.activity.AddEmployeeActivity;
+import com.jmjbrothers.mysecondandroidapplication.activity.EmployeeListActivity;
 
 
 public class MainActivity extends AppCompatActivity {

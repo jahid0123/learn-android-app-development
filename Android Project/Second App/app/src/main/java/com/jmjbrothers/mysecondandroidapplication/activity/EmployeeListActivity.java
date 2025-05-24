@@ -13,6 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.jmjbrothers.mysecondandroidapplication.R;
+import com.jmjbrothers.mysecondandroidapplication.adapter.EmployeeAdapter;
+import com.jmjbrothers.mysecondandroidapplication.model.Employee;
+import com.jmjbrothers.mysecondandroidapplication.service.ApiService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +65,7 @@ public class EmployeeListActivity extends AppCompatActivity {
 
     private void fetchEmployees() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8081/")
+                .baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
