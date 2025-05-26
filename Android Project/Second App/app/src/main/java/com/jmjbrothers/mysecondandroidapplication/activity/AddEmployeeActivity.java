@@ -16,9 +16,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 import com.jmjbrothers.mysecondandroidapplication.R;
 import com.jmjbrothers.mysecondandroidapplication.model.Employee;
 import com.jmjbrothers.mysecondandroidapplication.service.ApiService;
+import com.jmjbrothers.mysecondandroidapplication.util.ApiClient;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -35,7 +37,12 @@ public class AddEmployeeActivity extends AppCompatActivity {
     private TextInputLayout dateLayout;
     private EditText textName, textEmail, textDesignation, numberAge, multilineAddress, decimalSalary;
     private Button btnSave;
-    private ApiService apiService;
+    private ApiService apiService = ApiClient.getApiService();
+
+    private boolean isEditMode = false;
+    private int employeeId = -1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +69,38 @@ public class AddEmployeeActivity extends AppCompatActivity {
         decimalSalary = findViewById(R.id.decimalSalary);
         btnSave = findViewById(R.id.btnSave);
 
-        Retrofit retrofit = new Retrofit.Builder()
+      /*  Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/") // for emulator
                 // .baseUrl("http://172.28.64.1:8081/") // Give you computers IP
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                .build();*/
 
-        apiService = retrofit.create(ApiService.class);
+//        apiService = retrofit.create(ApiService.class);
+//
+//        dateLayout.setEndIconOnClickListener(v -> showDatePicker());
+
+        //btnSave.setOnClickListener(v -> saveEmployee());
+        Intent intent = getIntent();
+        if (getIntent().hasExtra("employee")){
+            Employee employee = new Gson()
+                    .fromJson(intent.getStringExtra("employee"), Employee.class);
+            employeeId = employee.getId();
+
+            textName.setText(employee.getName());
+            textEmail.setText(employee.getEmail());
+            textDesignation.setText(employee.getDesignation());
+            numberAge.setText(String.valueOf(employee.getAge()));
+            multilineAddress.setText(employee.getAddress());
+            editTextDob.setText(employee.getDob());
+            decimalSalary.setText(String.valueOf(employee.getSalary()));
+
+            btnSave.setText(R.string.update);
+            isEditMode = true;
+        }
 
         dateLayout.setEndIconOnClickListener(v -> showDatePicker());
-
         btnSave.setOnClickListener(v -> saveEmployee());
+
     }
 
     @Override
@@ -106,8 +134,13 @@ public class AddEmployeeActivity extends AppCompatActivity {
         String dobString = editTextDob.getText().toString().trim();
         double salary = Double.parseDouble(decimalSalary.getText().toString().trim());
 
-        // Create Employee object
         Employee employee = new Employee();
+        if (isEditMode){
+          employee.setId(employeeId);
+        }
+
+        // Create Employee object
+        //Employee employee = new Employee();
         employee.setName(name);
         employee.setEmail(email);
         employee.setDesignation(designation);
@@ -116,10 +149,17 @@ public class AddEmployeeActivity extends AppCompatActivity {
         employee.setDob(dobString);
         employee.setSalary(salary);
 
+
+        Call<Employee> call;
+        if (isEditMode){
+            call = apiService.updateEmployee(employeeId, employee);
+        }else {
+            call = apiService.saveEmployee(employee);
+        }
         // Make API call
-        Call<Employee> call = apiService.saveEmployee(employee);
-        String string = call.toString();
-        System.out.println(string);
+
+//        String string = call.toString();
+//        System.out.println(string);
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<Employee> call, @NonNull Response<Employee> response) {
