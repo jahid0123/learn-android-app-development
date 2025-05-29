@@ -1,93 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:padding="12dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
 
     <TextView
         android:id="@+id/nameText"
-        android:layout_width="370dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="293dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/name"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/subjectText"
-        android:layout_width="370dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="287dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/subject"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameText" />
 
     <TextView
         android:id="@+id/classText"
-        android:layout_width="366dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
+        android:layout_width="283dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/clazz"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subjectText" />
 
     <TextView
         android:id="@+id/schoolText"
-        android:layout_width="370dp"
+        android:layout_width="289dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/school"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintEnd_toStartOf="@+id/editIcon"
+        app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/classText" />
 
-    <LinearLayout
-        android:id="@+id/buttonLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/editIcon"
+        android:layout_width="43dp"
+        android:layout_height="32dp"
+        android:contentDescription="Edit"
+        android:src="@drawable/outline_add_24"
+        app:layout_constraintEnd_toEndOf="@+id/deleteIcon"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/classText"
+        app:layout_constraintTop_toTopOf="@id/classText" />
+
+    <ImageView
+        android:id="@+id/deleteIcon"
+        android:layout_width="40dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="Delete"
+        android:src="@drawable/outline_airline_seat_flat_angled_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schoolText"
-        app:layout_constraintVertical_bias="0.097">
-
-        <Button
-            android:id="@+id/updateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="@string/update" />
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="@string/delete" />
-    </LinearLayout>
+        app:layout_constraintStart_toEndOf="@+id/subjectText"
+        app:layout_constraintTop_toTopOf="@id/subjectText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
