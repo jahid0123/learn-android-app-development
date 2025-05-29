@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StudentCrudApplication</string>
+    <string name="name">Name</string>
+    <string name="subject">Subject</string>
+    <string name="clazz">Class</string>
+    <string name="school">School</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="add_student">Add Student</string>
+    <string name="list_page">Student List</string>
+    <string name="save">Save</string>
+</resources>
