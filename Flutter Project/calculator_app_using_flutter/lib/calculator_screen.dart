@@ -212,6 +212,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       number1 = number1.substring(0, number1.length - 1);
     }
     setState(() {});
+
   }
 
 //Btn color method
